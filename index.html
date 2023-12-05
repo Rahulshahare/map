@@ -17,18 +17,31 @@
  
 <style>
 #map { height: 100vh; }
+
+.bottomGradient{
+background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0 0 0 / 9%));
+}
+.topGradient {
+    background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(0 0 0 / 9%));
+    z-index: 999;
+    height: 44px;
+}
 </style>
   </head>
   <body>
      <div id="container-fluid">
+	<div class="fixed-top d-flex  topGradient"></div>
 
        <div id="map"></div>
-   <div class="fixed-bottom d-flex justify-content-center">
-      <a class="icon-link btn btn-danger mb-2" >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-crosshair2" viewBox="0 0 16 16">
-  <path d="M8 0a.5.5 0 0 1 .5.5v.518A7.001 7.001 0 0 1 14.982 7.5h.518a.5.5 0 0 1 0 1h-.518A7.001 7.001 0 0 1 8.5 14.982v.518a.5.5 0 0 1-1 0v-.518A7.001 7.001 0 0 1 1.018 8.5H.5a.5.5 0 0 1 0-1h.518A7.001 7.001 0 0 1 7.5 1.018V.5A.5.5 0 0 1 8 0m-.5 2.02A6.001 6.001 0 0 0 2.02 7.5h1.005A5.002 5.002 0 0 1 7.5 3.025zm1 1.005A5.002 5.002 0 0 1 12.975 7.5h1.005A6.001 6.001 0 0 0 8.5 2.02v1.005ZM12.975 8.5A5.002 5.002 0 0 1 8.5 12.975v1.005a6.002 6.002 0 0 0 5.48-5.48h-1.005ZM7.5 12.975A5.002 5.002 0 0 1 3.025 8.5H2.02a6.001 6.001 0 0 0 5.48 5.48v-1.005ZM10 8a2 2 0 1 0-4 0 2 2 0 0 0 4 0"/>
-</svg>
+   <div class="fixed-bottom d-flex justify-content-center bottomGradient">
+	<div class=" btn bg-white mb-2 shadow-sm border">
+      <a id="MyLatLong"  title="My Current Location">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-arrow-up-fill" viewBox="0 0 16 16">
+  		<path fill-rule="evenodd" d="M15.854.146a.5.5 0 0 1 .11.54L13.026 8.03A4.5 4.5 0 0 0 8 12.5c0 .5 0 1.5-.773.36l-1.59-2.498L.644 7.184l-.002-.001-.41-.261a.5.5 0 0 1 .083-.886l.452-.18.001-.001L15.314.035a.5.5 0 0 1 .54.111ZM6.637 10.07l7.494-7.494.471-1.178-1.178.471L5.93 9.363l.338.215a.5.5 0 0 1 .154.154l.215.338Z"/>
+  		<path fill-rule="evenodd" d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.354-5.354a.5.5 0 0 0-.722.016l-1.149 1.25a.5.5 0 1 0 .737.676l.28-.305V14a.5.5 0 0 0 1 0v-1.793l.396.397a.5.5 0 0 0 .708-.708l-1.25-1.25Z"/>
+	   </svg>
        </a>
+</div>
 </div>
     </div>
 <script>
@@ -42,7 +55,7 @@ var greenIcon = L.icon({
     shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
-var map = L.map('map').setView([20.0263, 78.5777], 13);
+var map = L.map('map').setView([20.0231391, 78.5477347], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -60,9 +73,29 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(map);
+   //var coord = e.latlng.toString().split(',');
+   //var lat = coord[0].split('(');
+   //var lng = coord[1].split(')');
+   //map.flyTo([lat[1], lng[0]], 13, {
+            //animate: true,
+            //duration: 2 // in seconds
+          //});
+
 }
 
 map.on('click', onMapClick);
+
+
+const button = document.getElementById('MyLatLong');
+
+button.addEventListener('click', function() {
+	map.flyTo([20.0231391, 78.5477347], 13, {
+            animate: true,
+            duration: 2 // in seconds
+          });
+});
+
+
 
 </script>
   </body>
