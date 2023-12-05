@@ -89,9 +89,29 @@ map.on('click', onMapClick);
 const button = document.getElementById('MyLatLong');
 
 button.addEventListener('click', function() {
-	map.flyTo([20.0231391, 78.5477347], 13, {
-            animate: true,
-            duration: 2 // in seconds
+	//map.flyTo([20.0231391, 78.5477347], 13, {
+        //    animate: true,
+        //    duration: 2 // in seconds
+        // });
+	navigator.geolocation.getCurrentPosition(function (pos) {
+              var lat = pos.coords.latitude;
+              var lng = pos.coords.longitude;
+              		
+		if (lat != null) {	
+			var gpsCordinate = lat +", "+ lng;
+			console.log(gpsCordinate);
+
+				map.flyTo([lat, lng], 13, {
+            				animate: true,
+            				duration: 2 // in seconds
+          			});
+ 					
+
+ 	 			
+              		} else {
+				alert("GPS not activated!");
+ 					
+              		}
           });
 });
 
