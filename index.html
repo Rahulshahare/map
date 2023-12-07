@@ -68,21 +68,40 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png z-20
 //https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png z -19
 
-var marker = L.marker([20.032337, 78.54923], {icon: greenIcon}).addTo(map);
+var marker = L.marker([20.032337, 78.54923], {icon: greenIcon}).addTo(map).on('click', function(e){
+	
+   onMarkerClick(20.032337, 78.54923)
+});
 marker.bindPopup("<b>Vriksham1</b>");
-var marker = L.marker([20.022826, 78.565722], {icon: greenIcon}).addTo(map);
+var marker = L.marker([20.022826, 78.565722], {icon: greenIcon}).addTo(map).on('click', function(e){
+	
+   onMarkerClick(20.022826, 78.565722)
+});;
 marker.bindPopup("<b>Vriksham2</b>");
-var marker = L.marker([20.032241, 78.54921], {icon: greenIcon}).addTo(map);
+var marker = L.marker([20.032241, 78.54921], {icon: greenIcon}).addTo(map).on('click', function(e){
+ onMarkerClick(20.032241, 78.54921)
+});
 marker.bindPopup("<b>Vriksham3</b>");
-var marker = L.marker([20.031772, 78.549046], {icon: greenIcon}).addTo(map);
+var marker = L.marker([20.031772, 78.549046], {icon: greenIcon}).addTo(map).on('click', function(e){
+	
+   onMarkerClick(20.031772,78.549046)
+});
 marker.bindPopup("<b>Vriksham4</b>");
+
+function onMarkerClick(lat,long){
+	map.flyTo([lat, long],current_zoom_level, {
+            animate: true,
+            duration: 0.25, // in seconds
+	    easeLinearity : 0.25
+          });
+}
 
 var popup = L.popup();
 
+var current_zoom_level =13;
 
-
-var current_zoom_level = map.on('zoomend', function (e) {
-    return e.target._zoom;
+map.on('zoomend', function (e) {
+     current_zoom_level = e.target._zoom;
 });
 
 function onMapClick(e) {
@@ -93,14 +112,14 @@ function onMapClick(e) {
    var coord = e.latlng.toString().split(',');
    var lat = coord[0].split('(');
    var lng = coord[1].split(')');
-   map.flyTo([lat[1], lng[0]],13, {
+   map.flyTo([lat[1], lng[0]],current_zoom_level, {
             animate: true,
             duration: 1 // in seconds
           });
-
+console.log(current_zoom_level);
 }
 
-map.on('click', onMapClick);
+//map.on('click', onMapClick);
 
 
 const button = document.getElementById('MyLatLong');
@@ -116,9 +135,9 @@ button.addEventListener('click', function() {
               		
 		if (lat != null) {	
 			var gpsCordinate = lat +", "+ lng;
-			console.log(gpsCordinate);
+			//console.log(gpsCordinate);
 
-				map.flyTo([lat, lng], current_zoom_level, {
+				map.flyTo([lat, lng], 13, {
             				animate: true,
             				duration: 2 // in seconds
           			});
