@@ -137,10 +137,17 @@ button.addEventListener('click', function() {
 			var gpsCordinate = lat +", "+ lng;
 			//console.log(gpsCordinate);
 
-				map.flyTo([lat, lng], 13, {
+				map.flyTo([lat, lng], 18, {
             				animate: true,
             				duration: 2 // in seconds
           			});
+var marker = L.marker([lat, lng], {icon: greenIcon}).addTo(map).on('click', function(e){
+	
+   onMarkerClick(lat,lng)
+});
+marker.bindPopup("<b>My current Position</b>");
+
+
  					
 
  	 			
