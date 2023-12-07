@@ -79,6 +79,12 @@ marker.bindPopup("<b>Vriksham4</b>");
 
 var popup = L.popup();
 
+
+
+var current_zoom_level = map.on('zoomend', function (e) {
+    return e.target._zoom;
+});
+
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
@@ -112,7 +118,7 @@ button.addEventListener('click', function() {
 			var gpsCordinate = lat +", "+ lng;
 			console.log(gpsCordinate);
 
-				map.flyTo([lat, lng], 13, {
+				map.flyTo([lat, lng], current_zoom_level, {
             				animate: true,
             				duration: 2 // in seconds
           			});
