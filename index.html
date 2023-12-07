@@ -48,9 +48,8 @@ background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0 0 0 / 9%));
 <script>
 
 var greenIcon = L.icon({
-    iconUrl: 'vriksham-marker.png',
-    shadowUrl: 'vriksham-marker-shadow-dark.png',
-    iconSize:     [40, 50], // size of the icon
+    iconUrl: 'Vriksham-marker-with-shadow.png',
+    iconSize:     [30, 30], // size of the icon
     shadowSize:   [40, 50], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     shadowAnchor: [12, 92],  // the same for the shadow
@@ -70,9 +69,13 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png z -19
 
 var marker = L.marker([20.032337, 78.54923], {icon: greenIcon}).addTo(map);
-marker.bindPopup("<b>Vriksham</b>");
+marker.bindPopup("<b>Vriksham1</b>");
 var marker = L.marker([20.022826, 78.565722], {icon: greenIcon}).addTo(map);
-marker.bindPopup("<b>Vriksham</b>");
+marker.bindPopup("<b>Vriksham2</b>");
+var marker = L.marker([20.032241, 78.54921], {icon: greenIcon}).addTo(map);
+marker.bindPopup("<b>Vriksham3</b>");
+var marker = L.marker([20.031772, 78.549046], {icon: greenIcon}).addTo(map);
+marker.bindPopup("<b>Vriksham4</b>");
 
 var popup = L.popup();
 
