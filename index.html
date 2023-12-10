@@ -57,7 +57,7 @@ var greenIcon = L.icon({
 });
 var map = L.map('map').setView([20.0231391, 78.5477347], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 22,
+    maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 //https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png alternateURL
@@ -94,15 +94,23 @@ function onMarkerClick(lat,long){
             duration: 0.25, // in seconds
 	    easeLinearity : 0.25
           });
+console.log(current_bound);
 }
 
 var popup = L.popup();
+
+
+
+var current_bound = map.getBounds();
 
 var current_zoom_level =13;
 
 map.on('zoomend', function (e) {
      current_zoom_level = e.target._zoom;
+console.log(e.target._zoom);
+console.log(map.getBounds());
 });
+
 
 function onMapClick(e) {
     popup
@@ -137,13 +145,10 @@ button.addEventListener('click', function() {
 			var gpsCordinate = lat +", "+ lng;
 			//console.log(gpsCordinate);
 
-				map.flyTo([lat, lng], 18, {
+				map.flyTo([lat, lng], 13, {
             				animate: true,
             				duration: 2 // in seconds
           			});
-
-
-
  					
 
  	 			
@@ -154,9 +159,7 @@ button.addEventListener('click', function() {
           });
 });
 
-
-
-map.locate({watch: false});
+ map.locate({watch: false,enableHighAccuracy:true});
 function onLocationFound(e) {
     var radius = e.accuracy;
 
@@ -172,7 +175,6 @@ function onLocationError(e) {
 }
 
 map.on('locationerror', onLocationError);
-
 
 
 </script>
