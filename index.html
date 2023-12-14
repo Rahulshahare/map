@@ -13,6 +13,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
+ <script src="SmoothWheelZoom.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
  
 <style>
@@ -56,7 +57,14 @@ var greenIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-var map = L.map('map').setView([20.0231391, 78.5477347], 13);
+var map = L.map('map',{
+    scrollWheelZoom:false,
+    smoothWheelZoom: true,
+    smoothSensitivity: 1
+
+}).setView([20.0231391, 78.5477347], 13);
+
+map.scrollWheelZoom = true;
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -73,8 +81,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var marker = L.marker([19.997499, 78.534951], {icon: greenIcon}).addTo(map).on('click', function(e){
 	onMarkerClick(19.997499,78.534951)
 });
-//marker.bindPopup("<b>Vriksham1</b>");
-marker.bindPopup('<b>Vriksham1</b></br><img src="IMG_20231214_135601.jpg"/>');
+marker.bindPopup("<b>Vriksham1</b>");
+//marker.bindPopup('<b>Vriksham1</b></br><img src="IMG_20231214_135601.jpg" width="80px"/>');
 
 var marker = L.marker([20.022826, 78.565722], {icon: greenIcon}).addTo(map).on('click', function(e){
 	
