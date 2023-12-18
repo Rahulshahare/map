@@ -82,12 +82,27 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 //MarkerClusterGroup
 
+var markers = L.markerClusterGroup({
+    spiderfyOnMaxZoom: false,
+	showCoverageOnHover: false,
+	zoomToBoundsOnClick: true,
+    /* iconCreateFunction: function(cluster) {
+		return L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });
+	} */
+});
+/* markers.addLayer(L.marker([19.997499, 78.534951], {icon: greenIcon}));
+markers.addLayer(L.marker([20.022826, 78.565722], {icon: greenIcon}));
+markers.addLayer(L.marker([20.032241, 78.54921], {icon: greenIcon}));
+markers.addLayer(L.marker([20.031772, 78.549046], {icon: greenIcon}));
+map.addLayer(markers); */
 
 
 var marker = L.marker([19.997499, 78.534951], {icon: greenIcon}).addTo(map).on('click', function(e){
 	onMarkerClick(19.997499,78.534951)
 });
 marker.bindPopup("<b>Vriksham1</b>");
+markers.addLayer(marker);
+
 //marker.bindPopup('<b>Vriksham1</b></br><img src="IMG_20231214_135601.jpg" width="80px"/>');
 
 var marker = L.marker([20.022826, 78.565722], {icon: greenIcon}).addTo(map).on('click', function(e){
@@ -95,15 +110,24 @@ var marker = L.marker([20.022826, 78.565722], {icon: greenIcon}).addTo(map).on('
    onMarkerClick(20.022826, 78.565722)
 });;
 marker.bindPopup("<b>Vriksham2</b>");
+markers.addLayer(marker);
+
 var marker = L.marker([20.032241, 78.54921], {icon: greenIcon}).addTo(map).on('click', function(e){
  onMarkerClick(20.032241, 78.54921)
 });
 marker.bindPopup("<b>Vriksham3</b>");
+markers.addLayer(marker);
+
 var marker = L.marker([20.031772, 78.549046], {icon: greenIcon}).addTo(map).on('click', function(e){
 	
    onMarkerClick(20.031772,78.549046)
 });
 marker.bindPopup("<b>Vriksham4</b>");
+markers.addLayer(marker);
+
+map.addLayer(markers);
+
+
 
 function onMarkerClick(lat,long){
 	map.flyTo([lat, long],current_zoom_level, {
@@ -180,7 +204,7 @@ button.addEventListener('click', function() {
           });
 });
 
- map.locate({watch: false,enableHighAccuracy:true});
+ //map.locate({watch: false,enableHighAccuracy:true});
 function onLocationFound(e) {
     var radius = e.accuracy;
 
