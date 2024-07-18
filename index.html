@@ -120,6 +120,16 @@ var marker = L.marker([20.032241, 78.54921], {icon: greenIcon}).addTo(map).on('c
 marker.bindPopup("<b>Vriksham3</b>");
 markers.addLayer(marker);
 
+
+//Swami Samarth temple 
+
+var marker = L.marker([20.026408, 78.548632], {icon: greenIcon}).addTo(map).on('click', function(e){
+ onMarkerClick(20.026408, 78.548632)
+});
+marker.bindPopup("<b>SwamiSamarthTemple</b>");
+markers.addLayer(marker);
+
+
 var marker = L.marker([20.031772, 78.549046], {icon: greenIcon}).addTo(map).on('click', function(e){
 	
    onMarkerClick(20.031772,78.549046)
