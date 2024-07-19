@@ -32,6 +32,7 @@ background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0 0 0 / 9%));
 .getContentCenter{
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 </style>
   </head>
@@ -105,7 +106,7 @@ map.addLayer(markers); */
 var marker = L.marker([19.997499, 78.534951], {icon: greenIcon}).addTo(map).on('click', function(e){
 	onMarkerClick(19.997499,78.534951)
 });
-marker.bindPopup("<img src=\"treeKelapur.jpeg\" width=\"72p\"/><br/><b>Vriksham 1</b><br/><b>Kelapur,MH,BHARAT</b>");
+marker.bindPopup("<div class=\"getContentCenter\"><img src=\"treeKelapur.jpeg\" width=\"72p\"/><br/><b>Vriksham 1</b><br/><b>Kelapur,MH,BHARAT</b></div>");
 markers.addLayer(marker);
 
 //marker.bindPopup('<b>Vriksham1</b></br><img src="IMG_20231214_135601.jpg" width="80px"/>');
