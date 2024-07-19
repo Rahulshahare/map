@@ -29,7 +29,10 @@ background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgb(0 0 0 / 9%));
     z-index: 999;
     height: 44px;
 }
-
+.getContentCenter{
+	display: flex;
+	flex-direction: column;
+}
 </style>
   </head>
   <body>
@@ -125,7 +128,7 @@ markers.addLayer(marker);
 var marker = L.marker([20.026408, 78.548632], {icon: greenIcon}).addTo(map).on('click', function(e){
  onMarkerClick(20.026408, 78.548632)
 });
-marker.bindPopup("<img src=\"IMG-20240718-WA0004.jpg\" width=\"72p\"/><br/><b>SwamiSamarthTemple</b>");
+marker.bindPopup(">div class="getContentCenter"><img src=\"IMG-20240718-WA0004.jpg\" width=\"72p\"/><br/><b>SwamiSamarthTemple</b></div>");
 markers.addLayer(marker);
 
 
