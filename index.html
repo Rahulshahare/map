@@ -205,6 +205,13 @@ button.addEventListener('click', function() {
 			var gpsCordinate = lat +", "+ lng;
 			//console.log(gpsCordinate);
 
+var circle = L.circle([lat, lng], {
+    color: 'blue',
+    fillColor: '#fff',
+    fillOpacity: 0.5,
+    radius: 50
+}).addTo(map);
+
 				map.flyTo([lat, lng], 13, {
             				animate: true,
             				duration: 2 // in seconds
