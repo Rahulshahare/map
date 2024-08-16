@@ -124,6 +124,13 @@ var marker = L.marker([20.032241, 78.54921], {icon: greenIcon}).addTo(map).on('c
 marker.bindPopup("<b>Vriksham3</b>");
 markers.addLayer(marker);
 
+// adilabad 19.65679, 78.52252
+var marker = L.marker([19.65679, 78.52252], {icon: greenIcon}).addTo(map).on('click', function(e){
+ onMarkerClick(19.65679, 78.52252)
+});
+marker.bindPopup("<b>Adilabad</b>");
+markers.addLayer(marker);
+
 
 //Swami Samarth temple 
 var marker = L.marker([20.026408, 78.548632], {icon: greenIcon}).addTo(map).on('click', function(e){
