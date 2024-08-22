@@ -67,7 +67,7 @@
             var markersArray = [];
 
             var markersCluster = L.markerClusterGroup({
-                spiderfyOnMaxZoom: false,
+                spiderfyOnMaxZoom: true,
                 showCoverageOnHover: false,
                 zoomToBoundsOnClick: true,
             });
@@ -76,32 +76,18 @@
             function addMarker(id, lat, lng, markerDetail) {
                 // Create a new marker instance
                 var marker = L.marker([lat, lng],{icon: greenIcon});
+                            marker.bindPopup(markerDetail);
 
-                // Add the marker to the map
-                marker.addTo(map);
-                marker.bindPopup(markerDetail);
+                markersCluster.addLayer(marker.on('click',function(e){
+                        console.log(e.latlng)
+                        FlyToLocation(e.latlng.lat, e.latlng.lng)
+                }))
 
                 // Add the marker to the markersArray array
                 markersArray.push({ _id: id, instance: marker });
             }
 
-            // Function to update the markersArray on the map
-            function rendermarkersArray() {
-                markersArray.forEach(function(marker) {
-                    markersCluster.addLayer(marker.instance.on('clicl',function(e){
-                        console.log(e.latlng)
-                        FlyToLocation(e.latlng.lat, e.latlng.lng)
-                    }))
-                    // marker.instance.addTo(map).on('click',function(e){
-                    //     console.log(e.latlng)
-                    //     FlyToLocation(e.latlng.lat, e.latlng.lng)
-
-
-                    // }); // Add each marker instance to the map
-                });
-                map.addLayer(markersCluster);
-                console.log('render',markersArray)
-            }
+            
 
             
             // Function to clear a specific marker by ID
@@ -128,8 +114,9 @@
             addMarker(3, 20.032241, 78.54921, "POPUP3"); 
             addMarker(4, 19.65679, 78.52252, "POPUP4");
             addMarker(5, 20.026408, 78.548632, '<div class="detailBox"><img src="IMG-20240718-WA0004.jpg" width="102px"/><br/><b>Swami samarth temple</b></div>');
+            addMarker(6, 19.65645, 78.52639, "POPUP4");
 
-            rendermarkersArray(); // Render all markersArray on the map
+            map.addLayer(markersCluster); // Render all markersArray on the map
 
             // To remove a marker later
             //clearMarker(1);
