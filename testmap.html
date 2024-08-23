@@ -69,7 +69,7 @@
                 )
             }   
             var greenIcon = iconGenerator('Vriksham-marker-with-shadow.png', 30)
-            var redIcon = iconGenerator('blueCircleFF.png', 30)
+            var redIcon = iconGenerator('blueCircle50.png', 40)
             
             
 
@@ -107,6 +107,7 @@
                 
                 markersArray = markersArray.filter(function(marker) {
                     if (marker._id === id) {
+                        map.removeLayer(marker.instance);
                         markersCluster.removeLayer(marker.instance);
                         return false; // Exclude this marker from the new array
                     }
@@ -166,9 +167,15 @@
 
             
 
-            // To remove a marker later
-            //clearMarker(1);
-
+            markersArray.forEach(function(marker){
+                setTimeout( ()=>{
+                clearMarker(marker._id);
+                },3000)
+            })
+            
+            setTimeout( ()=>{
+                markersCluster.clearLayers() //Clearing all markers
+                },3000)
             
 
             var current_zoom_level =13;
@@ -187,7 +194,7 @@
             }
 
             map.addLayer(markersCluster); // Render all markersArray on the map
-            console.log(markersCluster);
+            console.log(map);
 
 
         </script>
