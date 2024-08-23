@@ -218,14 +218,14 @@ button.addEventListener('click', function() {
               		
 		if (lat != null) {	
 			var gpsCordinate = lat +", "+ lng;
-			//console.log(gpsCordinate);
+			//console.log(navigator.geolocation);
 
-var circle = L.circle([lat, lng], {
-    color: 'blue',
-    fillColor: '#fff',
-    fillOpacity: 0.5,
-    radius: 50
-}).addTo(map);
+        var circle = L.circle([lat, lng], {
+            color: 'blue',
+            fillColor: '#fff',
+            fillOpacity: 0.5,
+            radius: 50
+        }).addTo(map);
 
 				map.flyTo([lat, lng], 13, {
             				animate: true,
@@ -241,14 +241,15 @@ var circle = L.circle([lat, lng], {
           });
 });
 
- //map.locate({watch: false,enableHighAccuracy:true});
+ map.locate({watch: true,enableHighAccuracy:true});
 function onLocationFound(e) {
+    console.log(e)
     var radius = e.accuracy;
 
     L.marker(e.latlng).addTo(map)
         .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
-    L.circle(e.latlng, radius).addTo(map);
+    //L.circle(e.latlng, radius).addTo(map);
 }
 
 map.on('locationfound', onLocationFound);
