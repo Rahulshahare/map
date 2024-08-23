@@ -161,21 +161,11 @@
             addMarker(5, 20.026408, 78.548632, '<div class="detailBox"><img src="IMG-20240718-WA0004.jpg" width="102px"/><br/><b>Swami samarth temple</b></div>');
             addMarker(6, 19.65645, 78.52639, "POPUP6");
             addMarker(7, 26.903678, 80.95643, "LAKNOW");
-            addMarker(8, 26.903678, 80.95525, "LAKNOW");
+            addMarker(8, 26.903678, 80.95525, '<span onclick="clearMarker(8)" title="Delete me">X |</span> LAKHNOW');
             addMarker(9, 19.671651, 78.532547, "Vidya Nagar, Adilabad");
             
 
             
-
-            markersArray.forEach(function(marker){
-                setTimeout( ()=>{
-                clearMarker(marker._id);
-                },3000)
-            })
-            
-            setTimeout( ()=>{
-                markersCluster.clearLayers() //Clearing all markers
-                },3000)
             
 
             var current_zoom_level =13;
