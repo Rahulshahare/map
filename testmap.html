@@ -133,7 +133,7 @@
                         markersArray.forEach(function(marker) {
                             if(marker._id === 'GpsLocation'){
                                 //clearMarker('GpsLocation');
-                                marker.instance.setLatLng([lat, lng]);
+                                marker.instance.setLatLng([lat, lng]).openPopup();
                                 check = true;
                                 
                             }
