@@ -84,7 +84,7 @@
             // Function to add a marker to the map and markersArray array
             function addMarker(id, lat, lng, markerDetail) {
                 // Create a new marker instance
-                var marker = L.marker([lat, lng],{icon: greenIcon});
+                var marker = L.marker([lat, lng],{icon: greenIcon},{alt:'Marker'});
                             marker.bindPopup(markerDetail);
 
                 
@@ -133,7 +133,7 @@
                         markersArray.forEach(function(marker) {
                             if(marker._id === 'GpsLocation'){
                                 //clearMarker('GpsLocation');
-                                marker.instance.setLatLng([lat, lng]).openPopup();
+                                marker.instance.setLatLng([lat, lng]).setPopupContent('You are here').bindTooltip('You are here').openPopup();
                                 check = true;
                                 
                             }
