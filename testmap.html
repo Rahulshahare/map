@@ -119,32 +119,39 @@
 
             }
 
-            const myButton = document.getElementById('MyLatLong');
-
-            myButton.addEventListener('click', function() {            
+            const ShowMyLatLng = document.getElementById('MyLatLong');
+            //Showing current location
+            ShowMyLatLng.addEventListener('click', function() {            
                 
-                //Checking if location already shown
-                markersArray.forEach(function(marker) {
-                    if(marker._id === 'GpsLocation'){
-                        clearMarker('GpsLocation');
-                    }
-                })
-
                 navigator.geolocation.getCurrentPosition(function (pos) {
                     var lat = pos.coords.latitude;
                     var lng = pos.coords.longitude;
                 
-                    
+                    console.log(lat, lng)
                     if(lat == null){
                         alert("No location found")
                         return false;
                     }
 
-                    //showing location
-                    FlyToLocation(lat,lng)  
-                    var marker = L.marker([lat, lng],{icon: redIcon}).addTo(map).bindPopup('You are here').openPopup();
-                    //markersCluster.addLayer(marker);
-                    markersArray.push({ _id: 'GpsLocation', instance: marker });
+                    
+                    var check = false;
+                    //Checking if location already shown
+                    markersArray.forEach(function(marker) {
+                        if(marker._id === 'GpsLocation'){
+                            //clearMarker('GpsLocation');
+                            marker.instance.setLatLng([lat, lng]);
+                            check = true;
+                             
+                        }
+                    })
+
+                    if(check == false){
+                        //showing location
+                        FlyToLocation(lat,lng)  
+                        var marker = L.marker([lat, lng],{icon: redIcon}).addTo(map).bindPopup('You are here').openPopup();
+                        //markersCluster.addLayer(marker);
+                        markersArray.push({ _id: 'GpsLocation', instance: marker });
+                    }
 
                 })
 
@@ -184,7 +191,7 @@
             }
 
             map.addLayer(markersCluster); // Render all markersArray on the map
-            console.log(map);
+            console.log(markersArray);
 
 
         </script>
