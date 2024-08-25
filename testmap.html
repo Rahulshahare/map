@@ -121,40 +121,45 @@
 
             const ShowMyLatLng = document.getElementById('MyLatLong');
             //Showing current location
-            ShowMyLatLng.addEventListener('click', function() {            
-                
-                navigator.geolocation.getCurrentPosition(function (pos) {
-                    var lat = pos.coords.latitude;
-                    var lng = pos.coords.longitude;
-                
-                    console.log(lat, lng)
-                    if(lat == null){
-                        alert("No location found")
-                        return false;
-                    }
+            ShowMyLatLng.addEventListener('click', function() {         
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        var lat = position.coords.latitude;
+                        var lng = position.coords.longitude;
+                        // Success callback: permission granted
 
-                    
-                    var check = false;
-                    //Checking if location already shown
-                    markersArray.forEach(function(marker) {
-                        if(marker._id === 'GpsLocation'){
-                            //clearMarker('GpsLocation');
-                            marker.instance.setLatLng([lat, lng]);
-                            check = true;
-                             
-                        }
-                    })
-
-                    if(check == false){
+                        var check = false;
+                        //Checking if location already shown
+                        markersArray.forEach(function(marker) {
+                            if(marker._id === 'GpsLocation'){
+                                //clearMarker('GpsLocation');
+                                marker.instance.setLatLng([lat, lng]);
+                                check = true;
+                                
+                            }
+                        })
                         //showing location
-                        FlyToLocation(lat,lng)  
-                        var marker = L.marker([lat, lng],{icon: redIcon}).addTo(map).bindPopup('You are here').openPopup();
-                        //markersCluster.addLayer(marker);
-                        markersArray.push({ _id: 'GpsLocation', instance: marker });
+                        if(check == false){
+                            FlyToLocation(lat,lng)  
+                            var marker = L.marker([lat, lng],{icon: redIcon}).addTo(map).bindPopup('You are here').openPopup();
+                            //markersCluster.addLayer(marker);
+                            markersArray.push({ _id: 'GpsLocation', instance: marker });
+                        }
+                    },
+                    function(error) {
+                        // Error callback: handle different error cases
+                        if (error.code === error.PERMISSION_DENIED) {
+                            console.log("Location access denied by user.");
+                        } else if (error.code === error.POSITION_UNAVAILABLE) {
+                            console.log("Location position unavailable.");
+                        } else if (error.code === error.TIMEOUT) {
+                            console.log("Location request timed out.");
+                        } else {
+                            console.log("An unknown error occurred.");
+                        }
                     }
-
-                })
-
+                );   
+                
 
                 
             })
