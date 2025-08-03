@@ -1,0 +1,32 @@
+
+<div id="spritespin"></div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/spritespin"></script>
+
+<script>
+    $("#spritespin").spritespin({
+      source: [
+        'images/plant06-jpgs/1.jpeg',
+        'images/plant06-jpgs/2.jpeg',
+        'images/plant06-jpgs/3.jpeg',
+        'images/plant06-jpgs/4.jpeg',
+        'images/plant06-jpgs/5.jpeg',
+        'images/plant06-jpgs/6.jpeg',
+        'images/plant06-jpgs/7.jpeg',
+        'images/plant06-jpgs/8.jpeg',
+        'images/plant06-jpgs/9.jpeg',
+        'images/plant06-jpgs/10.jpeg',
+      ],
+      width: 600,    // Set the width of the 360 view
+      height: 400,   // Set the height of the 360 view
+      frames: 36,    // Number of images (frames)
+      sense: -1,     // Control the direction of drag
+      animate: true, // Set to true if you want it to auto-rotate
+      loop: true,    // Set to true if you want it to loop continuously
+      frameTime: 80  // Speed of rotation in milliseconds
+    });
+  </script>
+  
